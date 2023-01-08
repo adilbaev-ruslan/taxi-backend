@@ -44,4 +44,7 @@ class User extends Authenticatable
     ];
 
     public function role() { return $this->belongsTo(Role::class); }
+    public function companies() { return $this->hasMany(Company::class); }
+    public function agents() { return $this->hasMany(Agent::class); }
+    public function drivers() { return $this->hasMany(Driver::class); }
 }
