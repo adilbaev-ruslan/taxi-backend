@@ -15,6 +15,22 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    @role('owner')
+                        <x-nav-link :href="route('owner.index')" :active="request()->routeIs('owner.index')">
+                            {{ __('Owner') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('owner.roles.index')" :active="request()->routeIs('owner.roles.index')">
+                            {{ __('Roles') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('owner.permissions.index')" :active="request()->routeIs('owner.permissions.index')">
+                            {{ __('Permissions') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('owner.users.index')" :active="request()->routeIs('owner.users.index')">
+                            {{ __('Users') }}
+                        </x-nav-link>
+                    @endrole
+
                 </div>
             </div>
 
