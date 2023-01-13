@@ -5,6 +5,7 @@ use App\Http\Controllers\Owner\IndexController;
 use App\Http\Controllers\Owner\RoleController;
 use App\Http\Controllers\Owner\PermissionController;
 use App\Http\Controllers\Owner\UserController;
+use App\Http\Controllers\Owner\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,12 +36,15 @@ Route::middleware(['auth', 'role:owner'])->name('owner.')->prefix('owner')->grou
     Route::post('/permissions/{permission}/roles', [PermissionController::class, 'assignRole'])->name('permissions.roles');
     Route::delete('/permissions/{permission}/roles/{role}', [PermissionController::class, 'removeRole'])->name('permission.roles.remove');
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+    Route::post('/users', [UserController::class, 'store'])->name('users.store');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
     Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
     Route::post('/users/{user}/roles', [UserController::class, 'assignRole'])->name('users.roles');
     Route::delete('/users/{user}/roles/{role}', [UserController::class, 'removeRole'])->name('users.roles.remove');
     Route::post('/users/{user}/permissions', [UserController::class, 'givePermission'])->name('users.permissions');
     Route::delete('/users/{user}/permissions/{permission}', [UserController::class, 'revokePermission'])->name('users.permissions.revoke');
+    Route::resource('/companies', CompanyController::class);
 });
 
 Route::middleware('auth')->group(function () {

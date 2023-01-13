@@ -29,6 +29,9 @@
                         <x-nav-link :href="route('owner.users.index')" :active="request()->routeIs('owner.users.index')">
                             {{ __('Users') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('owner.companies.index')" :active="request()->routeIs('owner.companies.index')">
+                            {{ __('Companies') }}
+                        </x-nav-link>
                     @endrole
 
                 </div>

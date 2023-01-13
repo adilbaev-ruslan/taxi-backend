@@ -1,4 +1,4 @@
-<x-admin-layout>
+<x-owner-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Users') }}
@@ -7,8 +7,15 @@
     <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <!-- component -->
+              <div class="flex justify-end">
+                    <a href="{{route('owner.users.create')}}" class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
+                      >
+                        Create
+                      </a>
+                </div>
+                
 <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md m-5">
+
   <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
     <thead class="bg-gray-50">
       <tr>
@@ -87,4 +94,4 @@
             </div>
         </div>
     </div>
-</x-admin-layout>
+</x-owner-layout>

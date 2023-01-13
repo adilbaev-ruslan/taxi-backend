@@ -1,37 +1,63 @@
 <x-owner-layout>
   <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Roles') }}
+            {{ __('Companies') }}
         </h2>
     </x-slot>
     <div class="py-5">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-5">
+
                 <div class="flex justify-end">
-                    <a href="{{route('owner.roles.create')}}" class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
+                    <a href="{{route('owner.companies.create')}}" class="border border-green-500 bg-green-500 text-white rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-green-600 focus:outline-none focus:shadow-outline"
                       >
                         Create
                       </a>
                 </div>
+
     <div class="overflow-hidden rounded-lg border border-gray-200 shadow-md">
       <table class="w-full border-collapse bg-white text-left text-sm text-gray-500">
         <thead class="bg-gray-50">
           <tr>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900">Name</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Licence number</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Expiry date</th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900">Working</th>
             <th scope="col" class="px-6 py-4 font-medium text-gray-900 justify-end"></th>
           </tr>
         </thead>
         <tbody class="divide-y divide-gray-100 border-t border-gray-100">
-            @foreach($roles as $role)
+            @foreach($companies as $company)
                 <tr class="hover:bg-gray-50">
-                    <th class="flex gap-3 px-6 py-4 font-normal text-gray-900">
-                      <div class="text-sm">
-                        <div class="font-medium text-gray-700">{{$role->name}}</div>
-                      </div>
-                    </th>
+                    <td class="px-6 py-4">
+                      {{$company->user->name}}
+                    </td>
+                    <td class="px-6 py-4">
+                      {{$company->licence_number}}
+                    </td>
+                    <td class="px-6 py-4">
+                      {{$company->expiry_date}}
+                    </td>
+                    <td class="px-6 py-4">
+                      @if($company->working == 1)
+                        <span
+                          class="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
+                        >
+                          <span class="h-1.5 w-1.5 rounded-full bg-green-600"></span>
+                          Active
+                        </span>
+                      @else 
+                        <span
+                          class="inline-flex items-center gap-1 rounded-full bg-red-50 px-2 py-1 text-xs font-semibold text-red-600"
+                        >
+                          <span class="h-1.5 w-1.5 rounded-full bg-red-600"></span>
+                          Inactive
+                        </span>
+                      @endif
+                    </td>
                     <td class="px-6 py-4">
                       <div class="flex justify-end gap-4">
-                        <form method="POST" action="{{ route('owner.roles.destroy', $role->id) }}" onsubmit="return confirm('Are you sure you want to delete this item?')">
+                        <form method="POST" action="{{ route('owner.companies.destroy', $company->id) }}" onsubmit="return confirm('Are you sure you want to delete this item?')">
                           @csrf
                           @method('DELETE')
                           <button x-data="{ tooltip: 'Delete' }" type="submit">
@@ -52,7 +78,7 @@
                           </svg>
                         </button>
                         </form>
-                        <a x-data="{ tooltip: 'Edite' }" href="{{ route('owner.roles.edit', $role->id) }}">
+                        <a x-data="{ tooltip: 'Edite' }" href="{{ route('owner.companies.edit', $company->id) }}">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
                             fill="none"
